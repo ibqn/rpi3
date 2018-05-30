@@ -6,13 +6,13 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-include(CheckIncludeFile)
-check_include_file("wiringPi.h" HAVE_WIRING_PI_H)
+project(LED-Blink CXX)
+
+include(CheckIncludeFileCXX)
+check_include_file_cxx("wiringPi.h" HAVE_WIRING_PI_H)
 if(NOT HAVE_WIRING_PI_H)
     message( FATAL_ERROR "wiringPi library not found!" )
 endif()
-
-project(LED-Blink)
 
 add_executable(led-blink main.cpp)
 
