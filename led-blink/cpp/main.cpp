@@ -8,7 +8,7 @@ int main(void)
 
     if (wiringPiSetup() == -1)
     {
-        std:cerr << "Failed to initialize wiringPi!" << std::endl;
+        std::cerr << "Failed to initialize wiringPi!" << std::endl;
         return EXIT_FAILURE;
     }
 
