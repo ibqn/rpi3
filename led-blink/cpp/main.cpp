@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <signal.h>
 #include <wiringPi.h>
 
 
@@ -13,6 +14,7 @@ int main(void)
         return EXIT_FAILURE;
     }
 
+    std::cout << "wiringPi initialized successfully" << std::endl;
     pinMode(led_pin, OUTPUT);
 
     for (bool state = true; ; state = !state)
@@ -21,6 +23,5 @@ int main(void)
         delay(1000);
     }
 
-    std::cout << "wiringPi initialized successfully" << std::endl;
     return EXIT_SUCCESS;
 }
