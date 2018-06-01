@@ -9,10 +9,10 @@ const int address = 0x48;
 
 const int pinbase = 64;
 
-const int A0 = pinabase + 0;
-const int A1 = pinabase + 1;
-const int A2 = pinabase + 2;
-const int A3 = pinabase + 3;
+const int A0 = pinbase + 0;
+const int A1 = pinbase + 1;
+const int A2 = pinbase + 2;
+const int A3 = pinbase + 3;
 
 
 int main(void)
