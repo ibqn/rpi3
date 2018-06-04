@@ -11,16 +11,16 @@ DHTState DHT::readSensor()
     DHTState rv = readData();
     if (rv == DHTState::OK)
     {
-        if (this.data[4] == ((this.data[0] + this.data[1] + this.data[2] + this.data[3]) & 0xFF))
+        if (data[4] == ((data[0] + data[1] + data[2] + data[3]) & 0xFF))
         {
-            this.humidity = this.data[0];
-            this.temperature = this.data[2] + this.data[3] * 0.1;
+            humidity = data[0];
+            temperature = data[2] + data[3] * 0.1;
             return rv;
         }
         rv =  DHTState::ERROR_CHECKSUM;
     }
-    this.humidity = NAN;
-    this.temperature = NAN;
+    humidity = NAN;
+    temperature = NAN;
     
     return rv;
 }
@@ -30,12 +30,12 @@ DHTState DHT::readData()
     // Reset 40 bits of received data to zero.
     data[0] = data[1] = data[2] = data[3] = data[4] = 0;
 
-    pinMode(this.pin, OUTPUT);
-    digitalWrite(this. pin, LOW);
-    delay(this.DHT11_WAKEUP);
-    digitalWrite(this.pin, HIGH);
+    pinMode(pin, OUTPUT);
+    digitalWrite(pin, LOW);
+    delay(DHT11_WAKEUP);
+    digitalWrite(pin, HIGH);
     delayMicroseconds(40);
-    pinMode(this.pin, INPUT);
+    pinMode(pin, INPUT);
     
     // first expect a low signal for ~80 microseconds
     if (expectPulse(LOW) == -1)
@@ -74,9 +74,9 @@ DHTState DHT::readData()
         // stored data.
     }
 
-    pinMode(this.pin, OUTPUT);
-    digitalWrite(this.pin, HIGH);
-    //printf("bits:\t%d,\t%d,\t%d,\t%d,\t%d\n",this.data[0],this.data[1],this.data[2],this.data[3],this.data[4]);
+    pinMode(pin, OUTPUT);
+    digitalWrite(pin, HIGH);
+    //printf("bits:\t%d,\t%d,\t%d,\t%d,\t%d\n",data[0],data[1],data[2],data[3],data[4]);
     return DHTState::OK;
 }
 
@@ -85,9 +85,9 @@ int32_t DHT::expectPulse(int state)
     int32_t t = micros();
     int32_t count;
 
-    while (digitalRead(this.pin) == state)
+    while (digitalRead(pin) == state)
     {
-        if ((count = micros() - t) > this.TIMEOUT)
+        if ((count = micros() - t) > TIMEOUT)
         {
             return -1;
         }

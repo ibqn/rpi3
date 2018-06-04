@@ -24,7 +24,7 @@ private:
     uint32_t _lastread;
     uint8_t data[5]; // buffer for received data
     DHTState readData();
-    int32_t expectPulse(state);
+    int32_t expectPulse(int state);
     int pin;
     
     const int32_t TIMEOUT = 100;
