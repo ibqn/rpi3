@@ -40,13 +40,13 @@ DHTState DHT::readData()
     // first expect a low signal for ~80 microseconds
     if (expectPulse(LOW) == -1)
     {
-        return DHTState::TIMEOUT;
+        return DHTState::ERROR_TIMEOUT;
     }
 
     // followed by a high signal for ~80 microseconds again
     if (expectPulse(HIGH) == -1)
     {
-        return DHTState::TIMEOUT;
+        return DHTState::ERROR_TIMEOUT;
     }
 
     // Now read the 40 bits sent by the sensor. Each bit is sent as a 50
@@ -62,12 +62,12 @@ DHTState DHT::readData()
         int32_t low = expectPulse(LOW);
         int32_t high = expectPulse(HIGH);
 
-        this.data[i/8] <<= 1;
+        data[i/8] <<= 1;
         // now compare the low and high cycle times to see if the bit is a 0 or 1.
         if (high > low) 
         {
             // High cycles are greater than 50us low cycle count, must be a 1.
-            this.data[i/8] |= 1;
+            data[i/8] |= 1;
         }
         // Else high cycles are less than (or equal to, a weird case) the 50us low
         // cycle count so this must be a zero.  Nothing needs to be changed in the
