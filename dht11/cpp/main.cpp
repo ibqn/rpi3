@@ -1,5 +1,6 @@
-#include "dht.hpp";
+#include "dht.hpp"
 
+#include <wiringPi.h>
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
