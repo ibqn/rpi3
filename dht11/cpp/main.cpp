@@ -1,6 +1,6 @@
+#include <wiringPi.h>
 #include "dht.hpp"
 
-#include <wiringPi.h>
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
@@ -29,7 +29,7 @@ int main(void)
             // if the return value is OK, show data
             case DHTState::OK:     
                 std::cout << "DHT11,OK!" << std::endl; 
-                printf("Humidity is %.2f %%, \t Temperature is %.2f *C\n", dht.humidity, dht.temperature);
+                printf("Humidity is %.2f %%, \t Temperature is %.2f °C\n", dht.humidity, dht.temperature);
                 break;
             case DHTState::ERROR_CHECKSUM:     //data check has errors
                 std::cerr << "DHT11 checksum error!" << std::endl;
