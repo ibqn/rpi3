@@ -1,5 +1,6 @@
 #include "Wire.h"
 
+
 #define PCF8591 (0x90 >> 1) // I2C bus address
 #define AIN0 0x00
 #define AOUT 0x40
@@ -38,7 +39,7 @@ void loop()
     Serial.print(" Voltage = "); Serial.print(voltage, 3); Serial.println("V");
     count = 0;
   }
-  count ++;  
-  
+  count ++;
+
   delay(100);
 }
