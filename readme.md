@@ -1,2 +1,2 @@
-# Raspberry Pi and Arduino projects
+# Raspberry Pi, Arduino and ESP8266 projects
 
